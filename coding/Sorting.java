@@ -43,14 +43,49 @@ public class Sorting {
             printArray(isArray, writer);
 
             int[] msArray = Arrays.copyOf(arr, n);
-            mergeSort(isArray, n);
+            mergeSort(msArray, n);
             writer.write("Merge Sort: ");
             writer.newLine();
-            printArray(bsArray, writer);
+            printArray(msArray, writer);
+
+            int[] qsArray = Arrays.copyOf(arr, n);
+            quickSort(qsArray, n);
+            writer.write("Quick Sort: ");
+            writer.newLine();
+            printArray(qsArray, writer);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void quickSort(int[] a, int n) {
+        quickSort(a, 0, n - 1);
+    }
+
+    private static void quickSort(int[] a, int low, int high) {
+        if(low < high) {
+            int pivot = getPivot(a, low, high);
+            quickSort(a, low, pivot - 1);
+            quickSort(a, pivot + 1, high);
+        }
+    }
+
+    private static int getPivot(int[] a, int low, int high) {
+        int pivot = a[low];
+        int i = low;
+        int j = high;
+        while (i < j) {
+            while(a[i] <= pivot && i <= high - 1) {
+                i++;
+            }
+            while(a[j] > pivot && j >= low + 1) {
+                j--;
+            }
+            if(i < j) swap(a, i, j);
+        }
+        swap(a, low, j);
+        return j;
     }
 
     private static void mergeSort(int[] a, int n) {
