@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.StringTokenizer;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class Sorting {
@@ -17,6 +19,10 @@ public class Sorting {
             for (int j = 0; j < n; j++) {
                 arr[j] = Integer.parseInt(st.nextToken());
             }
+
+            writer.write("Original Array: ");
+            writer.newLine();
+            printArray(arr, writer);
             
             int[] ssArray = Arrays.copyOf(arr, n);
             selectionSort(ssArray, n);
@@ -30,9 +36,67 @@ public class Sorting {
             writer.newLine();
             printArray(bsArray, writer);
 
-            
+            int[] isArray = Arrays.copyOf(arr, n);
+            insertionSort(isArray, n);
+            writer.write("Insertion Sort: ");
+            writer.newLine();
+            printArray(isArray, writer);
+
+            int[] msArray = Arrays.copyOf(arr, n);
+            mergeSort(isArray, n);
+            writer.write("Merge Sort: ");
+            writer.newLine();
+            printArray(bsArray, writer);
+
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void mergeSort(int[] a, int n) {
+        mergeSort(a, 0, n - 1);
+    }
+
+    private static void mergeSort(int[] a, int low, int high) {
+        if(low >= high) return;
+        int mid = (low + high) / 2;
+        mergeSort(a, low, mid);
+        mergeSort(a, mid + 1, high);
+        merge(a, low, mid, high);
+    }
+
+    private static void merge(int[] a, int low, int mid, int high) {
+        int left = low;
+        int right = mid + 1;
+        List<Integer> temporaryList = new ArrayList<>();
+        while(left <= mid && right <= high) {
+            if(a[left] <= a[right]) {
+                temporaryList.add(a[left++]);
+            } else {
+                temporaryList.add(a[right++]);
+            }
+        }
+
+        while(left <= mid) {
+            temporaryList.add(a[left++]);
+        }
+
+        while(right <= high) {
+            temporaryList.add(a[right++]);
+        }
+
+        for(int i = low; i <= high; i++) {
+            a[i] = temporaryList.get(i - low);
+        }
+    }
+
+    private static void insertionSort(int[] a, int n) {
+        for(int i = 0; i < n; i++) {
+            int j = i;
+            while(j > 0 && a[j - 1] > a[j]) {
+                swap(a, j, j - 1);
+                j--;
+            }
         }
     }
 
