@@ -1,10 +1,4 @@
-swap between : 0 and 4
-swap between : 1 and 1
-swap between : 2 and 6
-swap between : 3 and 6
-swap between : 4 and 4
-swap between : 5 and 8
-swap between : 6 and 6
-swap between : 7 and 8
-Selection Sort:
+Selection Sort: 
+1 1 2 2 3 4 4 5 6 
+Bubble Sort: 
 1 1 2 2 3 4 4 5 6 

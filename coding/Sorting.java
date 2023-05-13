@@ -17,15 +17,35 @@ public class Sorting {
             for (int j = 0; j < n; j++) {
                 arr[j] = Integer.parseInt(st.nextToken());
             }
+            
             int[] ssArray = Arrays.copyOf(arr, n);
-
             selectionSort(ssArray, n);
-            writer.write("Selection Sort:");
+            writer.write("Selection Sort: ");
             writer.newLine();
             printArray(ssArray, writer);
+
+            int[] bsArray = Arrays.copyOf(arr, n);
+            bubbleSort(bsArray, n);
+            writer.write("Bubble Sort: ");
+            writer.newLine();
+            printArray(bsArray, writer);
+
             
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void bubbleSort(int[] a, int n) {
+        for (int i = n - 1; i >= 1; i--) {
+            boolean swapped = false;
+            for(int j = 0;  j <= i - 1; j++) {
+                if(a[j] > a[j + 1]) {
+                    swap(a, j, j + 1);
+                    swapped = true;
+                }
+            }
+            if(!swapped) break;
         }
     }
 
