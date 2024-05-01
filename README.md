@@ -1,2 +1,2 @@
 # interview-prep
-Coding and System Design solutions and notes for my interview preparation
+Coding and System Design solutions and notes taken during my interview preparation
